@@ -101,6 +101,32 @@ class Profile extends HookWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: ColoredBox(
+                    color: Colors.transparent,
+                    child: Text(
+                      'Created: ${profile.createdDate}',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: ColoredBox(
+                    color: Colors.transparent,
+                    child: Text(
+                      'Updated: ${profile.updatedDate}',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
               
             ]),
       ),
