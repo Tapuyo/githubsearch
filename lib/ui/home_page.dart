@@ -6,6 +6,7 @@ import 'package:githubsearch/model/profile_model.dart';
 import 'package:githubsearch/provider/profile.dart';
 import 'package:githubsearch/services/service.dart';
 import 'package:githubsearch/ui/list_search.dart';
+import 'package:githubsearch/ui/profile_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -152,38 +153,60 @@ class _HomePageState extends State<HomePage> {
         context.select((ProfileProvider p) => p.list);
     return listProfile.isNotEmpty
         ? SizedBox(
-            height: MediaQuery.of(context).size.height / 2.5,
+            height: MediaQuery.of(context).size.height - 300,
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
               gridDelegate:
                   SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.vertical,
               itemCount: listProfile.length,
               itemBuilder: (context, i) {
                 return GestureDetector(
                   onTap: () async {
                     await Services.getProfile(context, listProfile[i].name);
+                    // ignore: use_build_context_synchronously
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            transitionDuration:
+                                const Duration(milliseconds: 500),
+                            pageBuilder: (_, __, ___) => Profile()));
                   },
-                  child: Card(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: Colors.black)),
+                      child: Card(
+                          child: Column(
                         children: [
-                          SizedBox(
-                              width: 100,
-                              height: 100,
-                              child: Image.network(listProfile[i].image)),
-                          SizedBox(
-                            width: 200,
-                            child: Text(
-                              listProfile[i].name,
-                              style: TextStyle(color: Colors.black),
-                              textAlign: TextAlign.center,
-                              // overflow: TextOverflow.ellipsis,
-                            ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Hero(
+                                    tag: 'profileImage',
+                                    child: CircleAvatar(
+                                      radius: 35.0,
+                                      backgroundImage:
+                                          NetworkImage(listProfile[i].image),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(8, 20, 8, 0),
+                                    child: Text(listProfile[i].name),
+                                  )
+                                ]),
                           ),
                         ],
-                      ),
+                      )),
                     ),
                   ),
                 );

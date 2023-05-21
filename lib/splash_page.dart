@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:githubsearch/routes/routes.dart';
 import 'package:githubsearch/ui/home_page.dart';
 
 class SplashPage extends StatefulWidget {
