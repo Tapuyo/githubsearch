@@ -27,7 +27,7 @@ abstract class Services {
           jsondata['email'] ?? '',
           jsondata['public_repos'] ?? 0,
           jsondata['avatar_url'] ?? '',
-          jsondata['url'] ?? '',
+          jsondata['html_url'] ?? '',
           jsondata['created_at'] ?? '',
           jsondata['updated_at'] ?? '');
       // ignore: use_build_context_synchronously

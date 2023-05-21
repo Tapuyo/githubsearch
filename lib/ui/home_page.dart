@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
         context.select((ProfileProvider p) => p.list);
     return listProfile.isNotEmpty
         ? SizedBox(
-            height: MediaQuery.of(context).size.height - 300,
+            height: MediaQuery.of(context).size.height - 400,
             width: MediaQuery.of(context).size.width,
             child: GridView.builder(
               gridDelegate:
@@ -189,14 +189,11 @@ class _HomePageState extends State<HomePage> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Hero(
-                                    tag: 'profileImage',
-                                    child: CircleAvatar(
-                                      radius: 35.0,
-                                      backgroundImage:
-                                          NetworkImage(listProfile[i].image),
-                                      backgroundColor: Colors.transparent,
-                                    ),
+                                  CircleAvatar(
+                                    radius: 35.0,
+                                    backgroundImage:
+                                        NetworkImage(listProfile[i].image),
+                                    backgroundColor: Colors.transparent,
                                   ),
                                   Padding(
                                     padding:
